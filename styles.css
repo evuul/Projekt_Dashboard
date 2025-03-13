@@ -13,7 +13,7 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;
-    transition: background-image 0.3s ease-in-out;
+    transition: background-image 0.1s ease-in-out;
 }
 
 .header {
@@ -36,9 +36,6 @@ body {
     color: white; /* Vit text */
 }
 
-
-
-
 #change-bg-btn:hover {
     background-color: #0056b3;
 }
@@ -55,7 +52,7 @@ body {
 }
 
 #editable-title:hover {
-    color: #007bffb9;
+    color: #2e323772;
 }
 
 /* Dashboard container */
@@ -79,6 +76,44 @@ body {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: grab; /* Gör det tydligt att boxarna är dragbara */
+    transition: transform 0.2s ease-in-out;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+/* När man håller en box och drar */
+.box:active {
+    cursor: grabbing;
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+/* Visuell feedback när boxen är över en annan */
+.box.drag-over {
+    border: 2px dashed #00f; /* En blå streckad kant för att visa att boxen är på väg att byta plats */
+    background-color: rgba(0, 0, 255, 0.1); /* Ljusblå bakgrund för att ge en visuell markering */
+}
+
+
+.weather-container {
+    display: block;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.weather-day-box {
+    background: rgb(248, 248, 248);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 10px; /* Lägger till mellanrum mellan dagarna */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-day-box img {
+    width: 50px;
+    height: 50px;
 }
 
 input, button, textarea {
@@ -110,6 +145,13 @@ input, button, textarea {
 }
 
 /* Snabblänkar */
+.favicon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
 #links-list {
     list-style-type: none;
     padding-left: 0;
@@ -136,11 +178,11 @@ input, button, textarea {
 }
 
 #links-list a i {
-    font-size: 1rem; /* Storlek på ikonen */
+    font-size: 1rem;
     padding: 10px;
-    border-radius: 50%; /* Rundad form */
-    margin-right: 10px; /* Mellanrum mellan ikon och text */
-    transition: background-color 0.3s, color 0.3s; /* Gör hover-effekten mjukare */
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* YouTube Färger */
@@ -173,6 +215,30 @@ input, button, textarea {
     background-color: #45a049; /* Mörkare grön vid hover */
 }
 
+.remove-link-btn {
+    background-color: transparent;
+    border: none;
+    color: #ff4d4d; /* Röd färg för borttagningsikonen */
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* Gör knappen mer dynamisk */
+    border-radius: 50%; /* Gör knappen rund */
+    padding: 5px;
+    margin-left: 10px;
+}
+
+/* När man hovrar över papperskorgen */
+.remove-link-btn:hover {
+    transform: scale(1.2); /* Gör ikonen större när man hovrar över den */
+    color: #ff0000; /* Ändra färg när du hovrar */
+}
+
+/* Ta bort den gröna cirkeln (fokusring) */
+.remove-link-btn:focus {
+    outline: none; /* Ta bort fokusring när knappen är i fokus */
+}
+
+
 /* Notes Box */
 textarea {
     height: 150px;
@@ -181,7 +247,7 @@ textarea {
 
 /* Button Styles */
 button {
-    background-color: #4CAF50;
+    background-color: #4f534f5f;
     color: white;
     border: none;
     cursor: pointer;
@@ -189,9 +255,6 @@ button {
     margin-top: 10px;
 }
 
-button:hover {
-    background-color: #45a049;
-}
 
 .nybildbtn {
     background-color: #363b41;
