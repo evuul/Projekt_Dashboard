@@ -11,32 +11,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Funktion för att hämta NASA:s Astronomy Picture of the Day med async/await
 async function fetchNasaPicture() {
-    const apiKey = 'DEMO_KEY'; // Din API-nyckel
+    const apiKey = 'SUY9Ghh5IGW3XelzwisN8RNLh0dd622PgqpnjNYD'; // Din API-nyckel
     const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+    
+    // Kolla om bilden redan finns i localStorage
+    const cachedData = localStorage.getItem("nasaPicture");
+    const cachedDate = localStorage.getItem("nasaDate");
+    const today = new Date().toISOString().split("T")[0]; // Dagens datum
+
+    if (cachedData && cachedDate === today) {
+        document.getElementById("nasa-content").innerHTML = cachedData;
+        return;
+    }
 
     try {
-        // Hämta data från API:t
         const response = await fetch(apiUrl);
-        
-        // Kontrollera om svaret är OK
         if (!response.ok) {
             throw new Error('Det gick inte att hämta data från NASA API');
         }
-
-        // Konvertera svaret till JSON
         const data = await response.json();
-
         const imageUrl = data.url;
-        const imageTitle = data.title;
-        const imageExplanation = data.explanation;
 
-        // Hämta container-elementet för NASA-bilden
-        const nasaContent = document.getElementById("nasa-content");
-
-        // Uppdatera innehållet med NASA-bild och förklaring
-        nasaContent.innerHTML = `
-            <img src="${imageUrl}" alt="${imageTitle}" style="max-width: 100%; height: auto;">
+        const nasaContent = `
+            <div class="nasa-frame">
+                <img src="${imageUrl}" alt="NASA Picture of the Day" class="nasa-image">
+            </div>
         `;
+        
+        // Spara bilden i localStorage
+        localStorage.setItem("nasaPicture", nasaContent);
+        localStorage.setItem("nasaDate", today);
+
+        document.getElementById("nasa-content").innerHTML = nasaContent;
     } catch (error) {
         console.error('Det gick inte att hämta NASA-bilden:', error);
     }

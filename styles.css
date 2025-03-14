@@ -95,6 +95,28 @@ body {
     background-color: rgba(0, 0, 255, 0.1); /* Ljusblå bakgrund för att ge en visuell markering */
 }
 
+/* Container för bilden */
+.nasa-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(45deg, #ffcc00, #ff6600); /* Gradient-ram */
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.5);
+}
+
+/* NASA-bilden */
+.nasa-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 5px solid #fff; /* Vit ram runt bilden */
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
 
 .weather-container {
     display: block;
@@ -271,21 +293,86 @@ button {
     width: auto;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 480px) {
+    .header {
+        padding: 5px 10px;
+        top: 5px;
+    }
+
+    #title {
+        margin-bottom: 15px;
+    }
+
+    .box {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .nybildbtn {
+        width: 200px;
+        padding: 5px 10px;
+        margin: 0 auto; /* Centrerar knappen horisontellt */
+        display: block; /* Gör knappen som en blocknivå för att kunna centreras */
+    }
+
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .header {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
+    }
+
     .dashboard {
-        grid-template-columns: repeat(3, 1fr); /* Tre kolumner på mindre skärmar */
+        grid-template-columns: repeat(1, 1fr); /* 1 column */
     }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 481px) and (max-width: 768px) {
     .dashboard {
-        grid-template-columns: repeat(2, 1fr); /* Två kolumner på ännu mindre skärmar */
+        grid-template-columns: repeat(1, 1fr); /* 1 column */
     }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 769px) and (max-width: 1024px) {
     .dashboard {
-        grid-template-columns: 1fr; /* En kolumn på små skärmar, t.ex. telefoner */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    .header {
+        padding: 5px 10px;
+        top: 5px;
+    }
+
+    #title {
+        margin-bottom: 15px;
+    }
+
+    .box {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .nybildbtn {
+        width: 200px;
+        padding: 5px 10px;
+        margin: 0 auto; /* Centrerar knappen horisontellt */
+        display: block; /* Gör knappen som en blocknivå för att kunna centreras */
+    }
+
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .header {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
     }
 }
